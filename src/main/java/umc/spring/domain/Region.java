@@ -1,5 +1,6 @@
 package umc.spring.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -29,5 +30,6 @@ public class Region extends BaseEntity {
     private String name;
 
     @OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Store> storeList = new ArrayList<>();
 }
