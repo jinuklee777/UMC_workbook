@@ -18,7 +18,6 @@ import umc.spring.domain.Member;
 import umc.spring.domain.Mission;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.MissionStatus;
-import umc.spring.validation.annotation.MissionAlreadyInProgress;
 
 @Entity
 @Getter
@@ -31,6 +30,7 @@ public class MemberMission extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Getter
     @Enumerated(EnumType.STRING)
     private MissionStatus status;
 
@@ -48,10 +48,5 @@ public class MemberMission extends BaseEntity {
         } else if (status.equals("완료")) {
             this.status = MissionStatus.COMPLETE;
         }
-    }
-
-    @MissionAlreadyInProgress
-    public MissionStatus getStatus() {
-        return status;
     }
 }
