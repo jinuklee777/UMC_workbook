@@ -30,6 +30,7 @@ public class MemberMission extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Getter
     @Enumerated(EnumType.STRING)
     private MissionStatus status;
 
@@ -40,4 +41,12 @@ public class MemberMission extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mission_id")
     private Mission mission;
+
+    public void setStatus(String status) {
+        if (status.equals("시작")) {
+            this.status = MissionStatus.CHALLENGING;
+        } else if (status.equals("완료")) {
+            this.status = MissionStatus.COMPLETE;
+        }
+    }
 }
